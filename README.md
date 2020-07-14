@@ -1,2 +1,4 @@
-# eh solo study for.... you can read the name....
-and if your not me why are you reading this 
+#working with databases 
+date uhhhh today?
+(jul 14th 2020)
+michael O & Gage M 
