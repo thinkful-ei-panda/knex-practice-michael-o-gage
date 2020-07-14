@@ -1,7 +1,7 @@
 require('dotenv').config();
 const knex = require('knex');
 
-const knexInstance = knex ({
+const DB = knex ({
   client : 'pg',
   connection : process.env.DB_URL
 });
@@ -35,28 +35,30 @@ const knexInstance = knex ({
 //   .finally(() => knexInstance.destroy());
 
 
-const mostPopularVideosForDays = (days) => { 
-  knexInstance
-    .select('video_name', 'region')
-    .count('date_viewed AS views')
-    .where(
-      'date_viewed',
-      '>',
-      knexInstance.raw('now() - \'?? days\' :: INTERVAL', days)
-    )
-    .from('whopipe_video_views')
-    .groupBy('video_name','region')
-    .orderBy([
-      {column: 'region', order: 'ASC'},
-      {column: 'views', order: 'DESC'},
-    ])
-    .then( result =>{
-      console.log(result);
-    })
-    .finally(() => knexInstance.destroy());
-};
+// const mostPopularVideosForDays = (days) => { 
+//   knexInstance
+//     .select('video_name', 'region')
+//     .count('date_viewed AS views')
+//     .where(
+//       'date_viewed',
+//       '>',
+//       knexInstance.raw('now() - \'?? days\' :: INTERVAL', days)
+//     )
+//     .from('whopipe_video_views')
+//     .groupBy('video_name','region')
+//     .orderBy([
+//       {column: 'region', order: 'ASC'},
+//       {column: 'views', order: 'DESC'},
+//     ])
+//     .then( result =>{
+//       console.log(result);
+//     })
+//     .finally(() => knexInstance.destroy());
+// };
 
-mostPopularVideosForDays(30);
-  
+// mostPopularVideosForDays(30);
+
+
+
 
 
